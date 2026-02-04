@@ -1,0 +1,58 @@
+{
+  /* ===============================
+     IMPORTS & TYPESCRIPT
+     =============================== */
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.suggest.autoImports": true,
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  /* ===============================
+     ESLINT & PRETTIER
+     =============================== */
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "always"
+  },
+
+  "eslint.validate": ["typescript", "javascript"],
+  "eslint.alwaysShowStatus": true,
+
+  /* ===============================
+     EDITOR UX (BACKEND FRIENDLY)
+     =============================== */
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.wordWrap": "on",
+  "editor.lineHeight": 22,
+  "editor.renderWhitespace": "boundary",
+  "editor.renderControlCharacters": true,
+
+  /* ===============================
+     FILE HANDLING
+     =============================== */
+  "files.autoSave": "onFocusChange",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  /* ===============================
+     SEARCH & PERFORMANCE
+     =============================== */
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.git": true
+  },
+
+  /* ===============================
+     TERMINAL
+     =============================== */
+  "terminal.integrated.defaultProfile.linux": "bash"
+}
