@@ -17,7 +17,7 @@ export class AuthService {
       return null;
     }
     try {
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, user.password!);
       if (!isMatch) {
         return null;
       }
@@ -29,7 +29,9 @@ export class AuthService {
   }
 
   login(user: User) {
-    const payload = { username: user.username, sub: user.id };
+    const roles = user.roles.map((r) => r.name); // convert Role entities to string array
+    const payload = { username: user.username, sub: user.id, roles };
+    console.log('roles', roles);
     return {
       access_token: this.jwtService.sign(payload),
     };

@@ -1,19 +1,47 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  // OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+//import { UserPermission } from '../../permission/entities/userPermission.entity';
+import { Role } from '../../roles/entities/role.entity';
 
+export enum AccountStatus {
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
+}
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @Column({ unique: true })
-  username: string;
+  username!: string;
 
   @Column({ nullable: true, select: false })
-  password: string;
+  password?: string;
 
   @Column({ nullable: true })
   name?: string;
 
-  @Column({ default: 'inactive' })
-  accountStatus: 'active' | 'inactive';
+  @Column({
+    type: 'simple-enum',
+    enum: AccountStatus,
+    default: AccountStatus.INACTIVE,
+  })
+  accountStatus!: AccountStatus;
+
+  @ManyToMany(() => Role, (role) => role.users, {
+    eager: true,
+  })
+  @JoinTable()
+  roles!: Role[];
+
+  // @OneToMany(() => UserPermission, (up) => up.user, {
+  //   eager: true,
+  // })
+  // userPermissions!: UserPermission[];
 }

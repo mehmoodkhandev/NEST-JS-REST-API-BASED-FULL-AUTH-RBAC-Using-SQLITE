@@ -3,11 +3,13 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import type { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { AccountStatus } from '../../users/entities/user.entity';
 import { UsersService } from '../../users/users.service';
 
 interface JwtPayload {
   sub: string;
   username: string;
+  roles: string;
 }
 
 @Injectable()
@@ -47,12 +49,16 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       throw new UnauthorizedException();
     }
 
-    if (user.accountStatus !== 'active') {
+    if (user.accountStatus !== AccountStatus.ACTIVE) {
       throw new UnauthorizedException(
         `Account is ${user.accountStatus}. Please contact support.`,
       );
     }
 
-    return { userId: payload.sub, username: payload.username };
+    return {
+      userId: payload.sub,
+      username: payload.username,
+      roles: payload.roles,
+    };
   }
 }
