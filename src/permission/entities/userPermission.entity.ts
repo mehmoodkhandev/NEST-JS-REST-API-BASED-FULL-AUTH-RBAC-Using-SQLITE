@@ -1,6 +1,7 @@
 // import {
 //   Column,
 //   Entity,
+//   Index,
 //   JoinColumn,
 //   ManyToOne,
 //   PrimaryGeneratedColumn,
@@ -9,6 +10,7 @@
 // import { Permission } from './permission.entity';
 
 // @Entity('user_permissions')
+// @Index(['user', 'permission'], { unique: true })
 // export class UserPermission {
 //   @PrimaryGeneratedColumn('uuid')
 //   id!: string;
@@ -20,7 +22,6 @@
 //   user!: User;
 
 //   @ManyToOne(() => Permission, (permission) => permission.userPermissions, {
-//     eager: true,
 //     onDelete: 'CASCADE',
 //   })
 //   @JoinColumn({ name: 'permission_id' })
