@@ -29,9 +29,21 @@ export class AuthService {
   }
 
   login(user: User) {
-    const roles = user.roles.map((r) => r.name); // convert Role entities to string array
-    const payload = { username: user.username, sub: user.id, roles };
-    console.log('roles', roles);
+    const roles = user.roles.map((r) => r.name);
+
+    const permissions = user.roles
+      .flatMap((r) => r.permissions || []) // flatten permissions from all roles
+      .map((p) => ({ action: p.action, subject: p.subject }));
+
+    const payload = {
+      username: user.username,
+      sub: user.id,
+      roles,
+      permissions,
+    };
+
+    console.log('permissions:', permissions);
+
     return {
       access_token: this.jwtService.sign(payload),
     };

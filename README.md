@@ -32,3 +32,5 @@ npm install -D @types/cookie-parser
 
 
 ![alt text](image.png)
+
+npm install @casl/nestjs

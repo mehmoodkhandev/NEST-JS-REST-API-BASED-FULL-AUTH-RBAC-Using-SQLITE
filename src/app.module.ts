@@ -15,6 +15,7 @@ import { Role } from './roles/entities/role.entity';
 import { User } from './users/entities/user.entity';
 
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { Permission } from './permission/entities/permission.entity';
 import { RolesGuard } from './roles/roles.guard';
 
 @Module({
@@ -23,7 +24,7 @@ import { RolesGuard } from './roles/roles.guard';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'database.sqlite',
-      entities: [User, Role],
+      entities: [User, Role, Permission],
       synchronize: true, // for demo / dev
     }),
     UsersModule,

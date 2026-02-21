@@ -14,7 +14,7 @@ export class UsersController {
   findMany(@Query() query: FindUserDto) {
     return this.usersService.findMany(query);
   }
-  @Roles(Role.ADMIN)
+  @Roles(Role.USER)
   @Get('profile')
   getProfile(@CurrentUser() user: User) {
     return user;

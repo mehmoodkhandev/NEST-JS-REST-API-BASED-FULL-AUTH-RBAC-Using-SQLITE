@@ -54,6 +54,7 @@ export class UsersService {
         accountStatus: true,
         password: selectSecrets,
       },
+      relations: ['roles', 'roles.permissions'], // ← load roles and their permissions
     });
   }
 }
